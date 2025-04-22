@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Művész Projekt</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+    .slide {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+    }
+    #slider {
+      display: flex;
+      transition: transform 0.5s ease;
+      width: 1300vw; /* 13 slide */
+    }
+    .nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 3rem;
+      color: white;
+      background: rgba(0,0,0,0.5);
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      z-index: 10;
+    }
+    .left { left: 10px; }
+    .right { right: 10px; }
+  </style>
+</head>
+<body>
+
+  <div class="nav left" onclick="prevSlide()">&#8592;</div>
+  <div class="nav right" onclick="nextSlide()">&#8594;</div>
+
+  <div id="slider">
+    <div class="slide">1. oldal</div>
+    <div class="slide">2. oldal</div>
+    <div class="slide">3. oldal</div>
+    <div class="slide">4. oldal</div>
+    <div class="slide">5. oldal</div>
+    <div class="slide">6. oldal</div>
+    <div class="slide">7. oldal</div>
+    <div class="slide">8. oldal</div>
+    <div class="slide">9. oldal</div>
+    <div class="slide">10. oldal</div>
+    <div class="slide">11. oldal</div>
+    <div class="slide">12. oldal</div>
+    <div class="slide">13. oldal</div>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+
+    function updateSlider() {
+      const slider = document.getElementById('slider');
+      slider.style.transform = `translateX(-${currentSlide * 100}vw)`;
+    }
+
+    function nextSlide() {
+      if (currentSlide < 12) {
+        currentSlide++;
+        updateSlider();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        updateSlider();
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    });
+  </script>
+
+</body>
+</html>
