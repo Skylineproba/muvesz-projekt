@@ -22,7 +22,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2rem;
+      flex-direction: column;
     }
     #slider {
       display: flex;
@@ -42,16 +42,86 @@
     }
     .left { left: 10px; }
     .right { right: 10px; }
+
+    .keyboard {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 2rem;
+      gap: 0.5rem;
+    }
+    .key-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: nowrap;
+      gap: 0.25rem;
+    }
+    .key {
+      border: 1px solid white;
+      color: white;
+      background: black;
+      width: 40px;
+      height: 40px;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.1s ease;
+    }
+    $1
+      transition: all 0.1s ease;
+    }
+    #ageInput {
+      border: 1px solid white;
+      background: black;
+      color: white;
+      padding: 0.5rem;
+      font-size: 1.5rem;
+      text-align: center;
+      width: 200px;
+      margin-top: 1rem;
+    }
+  .enter-key {
+      margin-top: 1rem;
+      width: 120px;
+      height: 40px;
+      font-size: 1.2rem;
+      border: 1px solid white;
+      color: white;
+      background: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.1s ease;
+    }
+  .enter-key:active {
+      background: white;
+      color: black;
+    }
   </style>
 </head>
 <body>
-
   <div class="nav left" onclick="prevSlide()">&#8592;</div>
   <div class="nav right" onclick="nextSlide()">&#8594;</div>
 
   <div id="slider">
-    <div class="slide">1. oldal</div>
-    <div class="slide">2. oldal</div>
+    <!-- Slide 1: age input and keyboard -->
+    <div class="slide">
+      <label for="ageInput" style="font-size: 1.5rem; margin-bottom: 1rem;">Írd be a korod:</label>
+      <input type="text" id="ageInput" readonly>
+      <div class="keyboard" id="keyboard"></div>
+      <div class="enter-key" onclick="nextSlide()">ENTER</div>
+    </div>
+    <!-- Slide 2 -->
+    <div class="slide">
+  <div style="font-size: 1.5rem; text-align: center; margin-bottom: 2rem;">
+    Kérlek használd rendeltetésszerűen a kérdőívet!
+  </div>
+  <div id="okButton" class="enter-key">OK</div>
+</div>
     <div class="slide">3. oldal</div>
     <div class="slide">4. oldal</div>
     <div class="slide">5. oldal</div>
@@ -91,7 +161,42 @@
       if (e.key === 'ArrowRight') nextSlide();
       if (e.key === 'ArrowLeft') prevSlide();
     });
-  </script>
+
+    // Custom keyboard layout
+    const layout = [
+      ['s','%','á','b','=','/','o','p','w','-','+','*'],
+      ['8','&','!','9','$','z','\'','?',';',':','f','<'],
+      ['.','#','m','f','q','_','x','@','k',')','i',';']
+    ];
+
+    const keyboard = document.getElementById('keyboard');
+    const ageInput = document.getElementById('ageInput');
+
+    layout.forEach(row => {
+      const rowDiv = document.createElement('div');
+      rowDiv.classList.add('key-row');
+      row.forEach(char => {
+        const btn = document.createElement('div');
+        btn.classList.add('key');
+        btn.textContent = char;
+        btn.addEventListener('click', () => {
+          ageInput.value += char;
+        });
+        rowDiv.appendChild(btn);
+      });
+      keyboard.appendChild(rowDiv);
+    });
+    let okClickCount = 0;
+  const okButton = document.getElementById('okButton');
+  if (okButton) {
+    okButton.addEventListener('click', () => {
+      okClickCount++;
+      if (okClickCount >= 5) {
+        nextSlide();
+      }
+    });
+  }
+</script>
 
 </body>
 </html>
