@@ -17,17 +17,20 @@
       overflow: hidden;
     }
     .slide {
-      width: 100vw;
+      flex: 0 0 100vw;
       height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
+      position: relative;
     }
     #slider {
       display: flex;
       transition: transform 0.5s ease;
       width: 1300vw; /* 13 slide */
+      position: relative;
+      left: 0;
     }
     .nav {
       position: absolute;
@@ -119,31 +122,81 @@
   <div class="nav right" onclick="nextSlide()">&#8594;</div>
 
   <div id="slider">
-    <!-- Slide 1: age input and keyboard -->
-    <div class="slide">
-      <label for="ageInput" style="font-size: 1.5rem; margin-bottom: 1rem;">Írd be a korod:</label>
-      <input type="text" id="ageInput" readonly>
-      <div class="keyboard" id="keyboard"></div>
-      <div class="enter-key" onclick="nextSlide()">ENTER</div>
+    <!-- Slide 0: bevezető szöveg -->
+    <div class="slide" style="padding: 2rem; text-align: justify; font-size: 1.2rem; line-height: 1.6;">
+      <p>Az afázia egy szerzett beszédzavar, amit stroke, baleset, agydaganat vagy egyéb betegség következményeként alakulhat ki. Az afázia egy állapot, sosem múlik el teljesen, de terápiával, gyakorlással a beszéd javítható.</p>
+      <p>Azonban a javulás hosszú, évekig tartó folyamat és aktív részvételt igényel. A segítségnyújtásban nagy szerepet játszik az Afázia Egyesület (Afázia – Az Újrakezdők Egyesülete), amit ennek hiányában az érintettek alapítottak. Nekik köszönhetően tudtam részt venni csoportos foglalkozásaikon, ahol mindig nagyon vártak engem.</p>
+      <p>Habár meg kellett küzdenünk minden egyes szóért, hogy eszükbe jusson, a betűk helyes megformálásáért és megannyi elmagyarázási opcióért, hogy én is értsem, mindig alig várták, hogy elmondhassák, vagy csak elmutogassák, hogy kik is ők valójában.</p>
+      <p>A kérdőív az afázia és a társadalmi kirekesztettség kapcsolatára reflektál. A weboldal működő nem-működése által kifejezésünkkel nem küzdők kerülünk az afázia helyzetébe: mikor a kérdésben benne vagyunk, de a válasz már nem lehetséges.</p>
+      <p>A kérdőív oldalai különböző nehézségekre reagálnak, amikkel az afáziások nap mint nap találkoznak. Ezeket az információkat az oldalak jobb felső sarkában elhelyezett (i) ikon segítségével tudod elolvasni.</p>
+    </div>
+    <!-- Slide 1 -->
+    <div class="slide" style="position: relative;">
+      <div class="enter-key" style="width: 250px;" onclick="nextSlide()">Kérdőív kitöltése</div>
     </div>
     <!-- Slide 2 -->
-    <div class="slide">
+    <div class="slide" style="position: relative;">
+      <div style="font-size: 1.5rem; margin-bottom: 1rem;">neved?</div>
+      <input type="text" id="nameInput" style="border: 1px solid white; background: black; color: white; padding: 0.5rem; font-size: 1.2rem; text-align: center; width: 300px;">
+      <div class="enter-key" style="position: absolute; bottom: 40px; right: 40px; width: 100px;" onclick="nextSlide()">tovább</div>
+    </div>
+    <!-- Slide 3 -->
+    <div class="slide" style="position: relative;">
+  <label for="ageInput" style="font-size: 1.5rem; margin-bottom: 1rem;">Írd be a korod:</label>
+  <input type="text" id="ageInput" readonly>
+  <div class="keyboard" id="keyboard"></div>
+  <div class="enter-key" onclick="nextSlide()">ENTER</div>
+</div>
+    <!-- Slide 4 -->
+    <div class="slide" style="position: relative;">
   <div style="font-size: 1.5rem; text-align: center; margin-bottom: 2rem;">
     Kérlek használd rendeltetésszerűen a kérdőívet!
   </div>
   <div id="okButton" class="enter-key">OK</div>
 </div>
-    <div class="slide">3. oldal</div>
-    <div class="slide">4. oldal</div>
-    <div class="slide">5. oldal</div>
-    <div class="slide">6. oldal</div>
-    <div class="slide">7. oldal</div>
-    <div class="slide">8. oldal</div>
-    <div class="slide">9. oldal</div>
-    <div class="slide">10. oldal</div>
-    <div class="slide">11. oldal</div>
-    <div class="slide">12. oldal</div>
-    <div class="slide">13. oldal</div>
+    <div class="slide" style="position: relative;">
+  <div style="font-size: 1.2rem; text-align: center; max-width: 700px; margin-bottom: 3rem; line-height: 1.5;">
+    a következő kérdések társadalmi felelősségvállalásról szólnak.<br>
+    kattints a tovább gombra, ha szeretnéd folytatni a kérdőívet!
+  </div>
+  <div style="position: absolute; bottom: 40px; left: 40px;">
+    <div class="enter-key">kilépés</div>
+  </div>
+  <div style="position: absolute; bottom: 40px; right: 40px;">
+    <div class="enter-key" onclick="nextSlide()">tovább</div>
+  </div>
+</div>
+    <div class="slide" style="position: relative;">
+  <div style="font-size: 1.2rem; text-align: center; max-width: 700px; margin-bottom: 2rem; line-height: 1.5;">
+    mit gondolsz a Mome autonómiájának ügyében történő szenátusi döntésekről?
+  </div>
+  <input type="text" id="momeInput" style="border: 1px solid white; background: black; color: white; padding: 0.5rem; font-size: 1.2rem; text-align: center; width: 300px;">
+  <div class="enter-key" style="position: absolute; bottom: 40px; right: 40px; width: 100px;" onclick="nextSlide()">tovább</div>
+</div>
+    <div class="slide" style="position: relative;">
+  <img src="7.oldal.png" alt="7. oldal illusztráció" style="max-width: 80%; height: auto; margin-bottom: 2rem;">
+  <input type="text" id="slide7Input" style="border: 1px solid white; background: black; color: white; padding: 0.5rem; font-size: 1.2rem; text-align: center; width: 300px;">
+  <div class="enter-key" style="position: absolute; bottom: 40px; right: 40px; width: 100px;" onclick="nextSlide()">tovább</div>
+</div>
+    <div class="slide" style="position: relative;">
+      <div style="width: 80%; height: 400px; overflow: hidden; margin-bottom: 2rem;">
+        <img src="8.oldal.gif" alt="8. oldal gif" style="width: 100%; transform: translateY(-10%);">
+      </div>
+  <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+    <label for="yesReason" style="font-size: 1.2rem;">igen. miért:</label>
+    <input type="text" id="yesReason" style="border: 1px solid white; background: black; color: white; padding: 0.5rem; font-size: 1.2rem; text-align: center; width: 300px;">
+  </div>
+  <div style="display: flex; align-items: center; gap: 1rem;">
+    <label for="noReason" style="font-size: 1.2rem;">nem. miért:</label>
+    <input type="text" id="noReason" style="border: 1px solid white; background: black; color: white; padding: 0.5rem; font-size: 1.2rem; text-align: center; width: 300px;">
+  </div>
+  <div class="enter-key" style="position: absolute; bottom: 40px; right: 40px; width: 100px;" onclick="nextSlide()">tovább</div>
+</div>
+    <div class="slide" style="position: relative;">9. oldal</div>
+    <div class="slide" style="position: relative;">10. oldal</div>
+    <div class="slide" style="position: relative;">11. oldal</div>
+    <div class="slide" style="position: relative;">12. oldal</div>
+    <div class="slide" style="position: relative;">13. oldal</div>
   </div>
 
   <script>
@@ -173,7 +226,7 @@
       if (e.key === 'ArrowLeft') prevSlide();
     });
 
-    // Custom keyboard layout 12/11/12
+    // Custom keyboard layout
     const layout = [
       ['s','%','á','b','=','/','o','p','w','-','+','*'],
       ['8','&','!','9','$','z','\'','?',':','f','<'],
@@ -205,6 +258,14 @@
       if (okClickCount >= 5) {
         nextSlide();
       }
+    });
+  }
+  const momeInput = document.getElementById('momeInput');
+  if (momeInput) {
+    momeInput.addEventListener('keydown', (e) => {
+      e.preventDefault();
+      const randomChar = String.fromCharCode(97 + Math.floor(Math.random() * 26));
+      momeInput.value += randomChar;
     });
   }
 </script>
