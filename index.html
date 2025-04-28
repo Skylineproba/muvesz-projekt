@@ -179,9 +179,9 @@
   <div class="enter-key" style="position: absolute; bottom: 40px; right: 40px; width: 100px;" onclick="nextSlide()">tovább</div>
 </div>
     <div class="slide" style="position: relative;">
-      <div style="width: 80%; height: 400px; overflow: hidden; margin-bottom: 2rem;">
-        <img src="8.oldal.gif" alt="8. oldal gif" style="width: 100%; transform: translateY(-10%);">
-      </div>
+  <div style="width: 80%; height: auto; overflow: hidden; margin-bottom: 2rem;">
+    <img src="8.oldal.gif" alt="8. oldal gif" style="width: 100%; height: auto; transform: translateY(30%);">
+  </div>
   <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
     <label for="yesReason" style="font-size: 1.2rem;">igen. miért:</label>
     <input type="text" id="yesReason" style="border: 1px solid white; background: black; color: white; padding: 0.5rem; font-size: 1.2rem; text-align: center; width: 300px;">
@@ -192,11 +192,25 @@
   </div>
   <div class="enter-key" style="position: absolute; bottom: 40px; right: 40px; width: 100px;" onclick="nextSlide()">tovább</div>
 </div>
-    <div class="slide" style="position: relative;">9. oldal</div>
-    <div class="slide" style="position: relative;">10. oldal</div>
-    <div class="slide" style="position: relative;">11. oldal</div>
-    <div class="slide" style="position: relative;">12. oldal</div>
-    <div class="slide" style="position: relative;">13. oldal</div>
+    <div class="slide" style="position: relative;">
+  <img src="9.oldal.gif" alt="9. oldal gif" style="max-width: 80%; height: auto; cursor: pointer;" onclick="nextSlide()">
+</div>
+    <div class="slide" style="position: relative;">
+  <img src="10.oldal.gif" alt="10. oldal gif" style="max-width: 80%; height: auto; cursor: pointer;" onclick="nextSlide()">
+</div>
+    <div class="slide" style="position: relative;">
+  <img src="11.oldal.gif" alt="11. oldal gif" style="width: 100vw; height: 100vh; object-fit: cover; cursor: pointer;" onclick="nextSlide()">
+</div>
+    <div class="slide" style="position: relative;">
+  <img src="12.oldal.gif" alt="12. oldal gif" style="width: 100vw; height: 100vh; object-fit: cover; cursor: pointer;" onclick="nextSlide()">
+</div>
+    <div class="slide" style="position: relative;">
+  <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
+    <div class="enter-key" style="padding: 0.5rem 1.5rem; border-radius: 2rem; background: white; color: black; font-size: 1.2rem; cursor: pointer;" onclick="goToStart()">
+      vissza a kezdőoldalra
+    </div>
+  </div>
+</div>
   </div>
 
   <script>
@@ -268,6 +282,10 @@
       momeInput.value += randomChar;
     });
   }
+function goToStart() {
+  currentSlide = 0;
+  updateSlider();
+}
 </script>
 
 </body>
